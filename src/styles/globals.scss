@@ -4,4 +4,17 @@
   padding: 0;
 }
 
-// TODO
+:root {
+  --Background: #1A1D23;
+  --Info: #BBBBBB;
+  --Body: #D7D7D7;
+  --Heading: #F8F8F8;
+  --Highlight: #FF57B2;
+}
+
+body{
+  background: var(--Background);
+  color: var(--Heading);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
