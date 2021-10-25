@@ -66,11 +66,11 @@ export default function Home(props:HomeProps) {
   } 
 
   return (
-    <main className={styles.container}>
+    <main className={commonStyles.container}>
       <div className={styles.posts}>
-        <img src="/Logo.svg" alt="Logo" />
+        <img src="/Logo.svg" alt="logo" />
         {posts.map(result => (
-          <Link href={`posts/${result.uid}`} key={result.uid}>
+          <Link href={`post/${result.uid}`} key={result.uid}>
             <a>
               <strong>{result.data.title}</strong>
               <p>{result.data.subtitle}</p>
@@ -81,8 +81,8 @@ export default function Home(props:HomeProps) {
             </a>
           </Link>
         ))}
-        
-        {button}
+
+        {nextPage ? <button type="button" onClick={() => searchMoreData(nextPage)}>Carregar mais posts</button> : ''}
       </div>
     </main>
   )
@@ -94,7 +94,7 @@ export const getStaticProps: GetStaticProps = async () => {
     Prismic.predicates.at('document.type', 'posts')
   ], {
     fetch: ['posts.title', 'posts.subtitle', 'posts.author'],
-    pageSize: 1,
+    pageSize: 5,
   });
 
   const next_page = postsResponse.next_page
