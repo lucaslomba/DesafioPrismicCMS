@@ -97,7 +97,6 @@ export const getStaticProps: GetStaticProps = async () => {
     pageSize: 5,
   });
 
-  const next_page = postsResponse.next_page
   const results = postsResponse.results.map(post => {
     return{
       uid: post.uid,
@@ -114,12 +113,16 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   })
 
+  const postsPagination = {
+    next_page: postsResponse.next_page,
+    results: results,
+  };
+
+
   return {
     props:{
-      postsPagination:{
-        results,
-        next_page
-      }
-    }
+      postsPagination
+    },
+    revalidate: 1800,
   }
 };
